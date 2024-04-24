@@ -10,6 +10,15 @@ export const INITIAL_STATE = {
   filters: {
     name: "",
   },
+  auth: {
+    user: {
+      name: null,
+      email: null,
+    },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+  },
 };
 
 axios.defaults.baseURL = "https://6627e2e1b625bf088c0a2892.mockapi.io/";
