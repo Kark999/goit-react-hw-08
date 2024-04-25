@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { Routes, Route } from "react-router-dom";
-import Loader from "../../Loader/Loader";
+import Loader from "../Loader/Loader";
 import { Suspense, lazy } from "react";
 import css from "./Navigation.module.css";
 
@@ -17,7 +17,7 @@ const getNavLinkClassName = ({ isActive }) =>
 const Navigation = () => {
   return (
     <div>
-      <header>
+      <header className={css.header}>
         <nav className={css.nav}>
           <NavLink className={getNavLinkClassName} to="/">
             Home
