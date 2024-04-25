@@ -11,7 +11,7 @@ const initialValues = {
   password: "",
 };
 
-const registrationSchema = Yup.object().shape({
+const loginSchema = Yup.object().shape({
   email: Yup.string()
     .required("Email address is required")
     .min(2, "Too Short!")
@@ -42,7 +42,7 @@ const LoginForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={registrationSchema}
+      validationSchema={loginSchema}
     >
       <Form className={css.form}>
         <label className={css.label} htmlFor={numberFieldId}>
