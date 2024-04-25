@@ -22,8 +22,14 @@ const Navigation = () => {
           <NavLink className={getNavLinkClassName} to="/">
             Home
           </NavLink>
-          <NavLink className={getNavLinkClassName} to="/movies">
-            Movies
+          <NavLink className={getNavLinkClassName} to="/register">
+            Register
+          </NavLink>
+          <NavLink className={getNavLinkClassName} to="/login">
+            Log In
+          </NavLink>
+          <NavLink className={getNavLinkClassName} to="/contacts">
+            Contacts
           </NavLink>
         </nav>
       </header>
