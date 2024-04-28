@@ -1,9 +1,10 @@
 .nav {
-  display: inline-flex;
+  display: flex;
   gap: 14px;
   align-items: center;
   justify-content: center;
   padding: 10px;
+  margin-right: auto;
 }
 .navLink {
   text-decoration: none;
@@ -14,4 +15,10 @@
 }
 .active {
   color: red;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
 }
