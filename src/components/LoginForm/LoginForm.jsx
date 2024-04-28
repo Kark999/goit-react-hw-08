@@ -1,8 +1,8 @@
-import css from "./RegistrationForm.module.css";
+import css from "./LoginForm.module.css";
 import { useId } from "react";
 // import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -31,7 +31,8 @@ const LoginForm = () => {
     actions.resetForm();
   };
 
-  const numberFieldId = useId();
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
 
   const onAddContact = (values) => {
     const finalContact = { ...values };
@@ -45,28 +46,28 @@ const LoginForm = () => {
       validationSchema={loginSchema}
     >
       <Form className={css.form}>
-        <label className={css.label} htmlFor={numberFieldId}>
+        <label className={css.label} htmlFor={emailFieldId}>
           Email
         </label>
         <Field
           className={css.field}
           type="email"
           name="email"
-          id={numberFieldId}
+          id={emailFieldId}
         />
         <ErrorMessage className={css.error} name="email" component="span" />
-        <label className={css.label} htmlFor={numberFieldId}>
+        <label className={css.label} htmlFor={passwordFieldId}>
           Password
         </label>
         <Field
           className={css.field}
           type="password"
           name="password"
-          id={numberFieldId}
+          id={passwordFieldId}
         />
         <ErrorMessage className={css.error} name="password" component="span" />
         <button className={css.formBtn} type="submit">
-          Add contact
+          Log In
         </button>
       </Form>
     </Formik>
