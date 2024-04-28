@@ -1,10 +1,9 @@
 import css from "./RegistrationForm.module.css";
 import { useId } from "react";
-// import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { userRegister } from "../../redux/auth/operations";
 
 const initialValues = {
   name: "",
@@ -31,7 +30,7 @@ const RegistrationForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    onAddContact(values);
+    dispatch(userRegister(values));
 
     actions.resetForm();
   };
@@ -39,11 +38,6 @@ const RegistrationForm = () => {
   const nameFieldId = useId();
   const emailFieldId = useId();
   const passwordFieldId = useId();
-
-  const onAddContact = (values) => {
-    const finalContact = { ...values };
-    dispatch(addContact(finalContact));
-  };
 
   return (
     <Formik
@@ -78,7 +72,7 @@ const RegistrationForm = () => {
         />
         <ErrorMessage className={css.error} name="password" component="span" />
         <button className={css.formBtn} type="submit">
-          Add contact
+          Register
         </button>
       </Form>
     </Formik>
