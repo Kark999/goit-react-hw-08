@@ -10,8 +10,10 @@ export const AppBar = () => {
 
   return (
     <div className={css.appBar}>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      <div>
+        <Navigation />
+      </div>
+      <div>{isLoggedIn ? <UserMenu /> : <AuthNav />}</div>
     </div>
   );
 };

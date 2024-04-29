@@ -1,8 +1,10 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Loader from "./components/Loader/Loader";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import "./App.css";
+import { refreshUser } from "./redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const RegistrationPage = lazy(() => import("./pages/RegistrationPage"));
@@ -11,6 +13,12 @@ const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <div>
       <Layout>

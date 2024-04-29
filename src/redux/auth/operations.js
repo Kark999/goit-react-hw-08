@@ -39,3 +39,34 @@ export const logInUser = createAsyncThunk(
     }
   }
 );
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("No token");
+    }
+    try {
+      setToken(persistedToken);
+      const { data } = await instance.get("/users/current");
+      console.log("Refresh data: ", data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logOutUser = createAsyncThunk(
+  "auth/logout",
+  async (_, thunkAPI) => {
+    try {
+      await instance.post("/users/logout");
+      clearToken();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
