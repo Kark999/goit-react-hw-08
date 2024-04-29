@@ -6,7 +6,6 @@ const Layout = ({ children }) => {
     <div>
       <header className={css.header}>
         <AppBar />
-        {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
       </header>
       <main>{children}</main>
     </div>

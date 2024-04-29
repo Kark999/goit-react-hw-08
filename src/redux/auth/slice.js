@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {} from "./operations";
+import { userRegister, logInUser } from "./operations";
 
 const authSlice = createSlice({
   name: "authSlice",
@@ -12,50 +12,43 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
   },
-
   extraReducers: (builder) => {
     builder
-      .addCase(fetchContacts.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+      .addCase(userRegister.pending, (state) => {
+        state.isRefreshing = true;
       })
-      .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.loading = false;
-        state.error = null;
+      .addCase(userRegister.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      .addCase(userRegister.rejected, (state) => {
+        state.isRefreshing = false;
+        state.isLoggedIn = false;
+        state.token = null;
+        state.user = { name: null, email: null };
       })
-      .addCase(addContact.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+      .addCase(logInUser.pending, (state) => {
+        state.isRefreshing = true;
       })
-      .addCase(addContact.fulfilled, (state, action) => {
-        state.items.push(action.payload);
-        state.loading = false;
-        state.error = null;
+      .addCase(logInUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      .addCase(addContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(deleteContact.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(deleteContact.fulfilled, (state, action) => {
-        state.items = state.items.filter(
-          (contact) => contact.id !== action.payload.id
-        );
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(deleteContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      .addCase(logInUser.rejected, (state) => {
+        state.isRefreshing = false;
+        state.isLoggedIn = false;
+        state.token = null;
+        state.user = { name: null, email: null };
       });
+    // .addCase()
+    // .addCase()
+    // .addCase()
+    // .addCase()
+    // .addCase();
   },
 });
 

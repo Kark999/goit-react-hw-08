@@ -2,7 +2,7 @@ import css from "./LoginForm.module.css";
 import { useId } from "react";
 // import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { logInUser } from "../../redux/auth/operations";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -26,18 +26,13 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    onAddContact(values);
+    dispatch(logInUser(values));
 
     actions.resetForm();
   };
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
-
-  const onAddContact = (values) => {
-    const finalContact = { ...values };
-    dispatch(addContact(finalContact));
-  };
 
   return (
     <Formik
