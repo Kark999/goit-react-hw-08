@@ -1,17 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../auth/operations";
 
-export const INITIAL_STATE = {
-  contacts: {
-    items: [],
-    loading: false,
-    error: null,
-  },
-  filters: {
-    name: "",
-  },
-};
-
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (contacts, thunkAPI) => {
