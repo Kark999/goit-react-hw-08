@@ -3,9 +3,10 @@ import { instance } from "../auth/operations";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async (contacts, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const { data } = await instance.get("/contacts");
+      console.log("Contacts data: ", data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

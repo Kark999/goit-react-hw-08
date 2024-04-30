@@ -6,11 +6,17 @@ import { fetchContacts } from "../redux/contacts/operations";
 import ContactForm from "../components/ContactForm/ContactForm";
 import SearchBox from "../components/SearchBox/SearchBox";
 import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
+import {
+  selectContacts,
+  selectError,
+  selectLoading,
+} from "../redux/contacts/selectors";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.contacts.loading);
-  const error = useSelector((state) => state.contacts.error);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  const contacts = useSelector(selectContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -23,7 +29,7 @@ const ContactsPage = () => {
       <SearchBox />
       {loading && <Loader />}
       {error && <ErrorMessage />}
-      <ContactList />
+      {contacts && <ContactList />}
     </div>
   );
 };
