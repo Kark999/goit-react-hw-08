@@ -10,3 +10,11 @@
   display: flex;
   align-items: center;
 }
+.noContacts {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5; /* 150% */
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: red;
+}

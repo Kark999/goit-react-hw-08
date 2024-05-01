@@ -9,6 +9,9 @@ const ContactList = () => {
 
   return (
     <ul className={css.contactList}>
+      {filteredContacts && filteredContacts.length === 0 && (
+        <li className={css.noContacts}> There are no contacts in your book</li>
+      )}
       {filteredContacts.map((contact) => (
         <li className={css.contactListItem} key={contact.id}>
           <Contact
